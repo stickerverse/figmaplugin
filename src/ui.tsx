@@ -16,25 +16,21 @@ declare global {
 
 import './ui.css';
 
-// Initialize our unified system
+// Initialize our unified system - Made optional to prevent plugin loading failures
 const initializeUnifiedSystem = () => {
   try {
-    // Create a script element to load the core
+    // Try to load shared files, but don't block if they fail
     const coreScript = document.createElement('script');
-    // Use relative path for Figma plugin environment
     coreScript.src = '../shared/core.js';
     coreScript.onload = () => {
-      // Once core is loaded, load the UI system
       const uiScript = document.createElement('script');
       uiScript.src = '../shared/unified-ui.js';
       uiScript.onload = () => {
-        // Once both are loaded, initialize and notify the plugin
         if (window.StickerCore && window.StickerUI) {
           window.StickerCore.CONFIG.initialize();
           window.StickerCore.Messenger.initialize();
           window.StickerUI.initialize(document.body);
           
-          // Notify the plugin that core is initialized
           parent.postMessage({
             pluginMessage: {
               type: 'CORE_INITIALIZED',
@@ -45,11 +41,17 @@ const initializeUnifiedSystem = () => {
           console.log('Unified system initialized');
         }
       };
+      uiScript.onerror = () => {
+        console.warn('Unified UI system not available - plugin will work without it');
+      };
       document.head.appendChild(uiScript);
+    };
+    coreScript.onerror = () => {
+      console.warn('Unified core system not available - plugin will work without it');
     };
     document.head.appendChild(coreScript);
   } catch (err) {
-    console.error('Failed to initialize unified system:', err);
+    console.warn('Failed to initialize unified system - plugin will work without it:', err);
   }
 };
 
