@@ -1,0 +1,48 @@
+{
+  "name": "figma-image-component-analyzer",
+  "version": "1.0.0",
+  "description": "Converts images to editable Figma components through image analysis",
+  "scripts": {
+    "build": "build-figma-plugin --typecheck --minify",
+    "watch": "build-figma-plugin --typecheck --watch"
+  },
+  "figma-plugin": {
+    "id": "figma-image-component-analyzer",
+    "name": "Image Component Analyzer",
+    "main": "src/main.ts",
+    "ui": "src/ui.tsx",
+    "editorType": [
+      "figma"
+    ]
+  },
+  "dependencies": {
+    "@create-figma-plugin/ui": "^2.4.0",
+    "@create-figma-plugin/utilities": "^2.4.0",
+    "opencv.js": "^1.2.1",
+    "preact": "^10.13.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "tesseract.js": "^4.1.1"
+  },
+  "devDependencies": {
+    "@create-figma-plugin/build": "^2.6.1",
+    "@create-figma-plugin/tsconfig": "^2.4.0",
+    "@figma/plugin-typings": "^1.114.0",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "typescript": "^5.0.0",
+    "vite": "^4.3.0"
+  },
+  "main": "code.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stickerverse/sticker2.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/stickerverse/sticker2/issues"
+  },
+  "homepage": "https://github.com/stickerverse/sticker2#readme"
+}
