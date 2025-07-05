@@ -3,14 +3,14 @@
 
 // Define type for our configuration
 interface ApiConfig {
-  GOOGLE_CLOUD_API_KEY: string;
+  GOOGLE_CLOUD_VISION_API_KEY: string;
   FIGMA_API_KEY: string;
 }
 
 // Create a safe config object without hardcoded secrets
 export const API_CONFIG: ApiConfig = {
   // These will be populated at runtime
-  GOOGLE_CLOUD_API_KEY: '',
+  GOOGLE_CLOUD_VISION_API_KEY: '',
   FIGMA_API_KEY: ''
 };
 
@@ -27,10 +27,10 @@ export const API_CONFIG: ApiConfig = {
 try {
   // Safe check if we're in a browser environment with localStorage
   if (typeof window !== 'undefined' && window.localStorage) {
-    const cloudKey = window.localStorage.getItem('GOOGLE_CLOUD_API_KEY');
+    const cloudKey = window.localStorage.getItem('GOOGLE_CLOUD_VISION_API_KEY');
     const figmaKey = window.localStorage.getItem('FIGMA_API_KEY');
     
-    if (cloudKey) API_CONFIG.GOOGLE_CLOUD_API_KEY = cloudKey;
+    if (cloudKey) API_CONFIG.GOOGLE_CLOUD_VISION_API_KEY = cloudKey;
     if (figmaKey) API_CONFIG.FIGMA_API_KEY = figmaKey;
   }
 } catch (e) {

@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "Converts images to editable Figma components through image analysis",
   "scripts": {
-    "build": "build-figma-plugin --typecheck --minify",
-    "watch": "build-figma-plugin --typecheck --watch"
+    "build": "build-figma-plugin --typecheck --minify && npm run copy-shared",
+    "watch": "build-figma-plugin --typecheck --watch",
+    "copy-shared": "mkdir -p build/shared && cp shared/core.js shared/unified-ui.js build/shared/"
   },
   "figma-plugin": {
     "id": "figma-image-component-analyzer",
@@ -34,7 +35,6 @@
     "typescript": "^5.0.0",
     "vite": "^4.3.0"
   },
-  "main": "code.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/stickerverse/sticker2.git"
