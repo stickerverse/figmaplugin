@@ -10,6 +10,19 @@ yarn.lock
 dist/
 build/
 
+# Environment variables and secrets
+.env
+.env.local
+.env.development
+.env.production
+.env.development.local
+.env.test.local
+.env.production.local
+
+# API keys and credentials
+*.pem
+*.key
+
 # Editor directories and files
 .vscode/
 .idea/
